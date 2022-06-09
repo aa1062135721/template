@@ -7,7 +7,7 @@ import { APIMAP } from './ApiMap'
 axios.defaults.baseURL = '/api/index.php/api/'
 axios.defaults.timeout = 20000
 
-const initApiConfig = (key, params) => {
+const initApiConfig = (key) => {
   let url = APIMAP[key]
   if (url) {
     return url
@@ -24,9 +24,6 @@ const initApiConfig = (key, params) => {
 // }
 // let loadingInstance = null;
 axios.interceptors.request.use((config) => {
-  if ((config.params && config.params.hl) || (config.data && config.data.hl)) {
-    console.log(111)
-  }
   if (config.method === 'get' || config.method === 'delete') {
     config.params = Object.assign(config.params || {})
   } else {
